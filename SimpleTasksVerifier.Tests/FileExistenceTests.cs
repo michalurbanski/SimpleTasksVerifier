@@ -6,7 +6,7 @@ using SimpleTasksVerifier.Helpers;
 namespace SimpleTasksVerifier.Tests
 {
     [TestClass]
-    public class FileTests
+    public class FileExistenceTests
     {
         #region Tests
 
@@ -14,7 +14,7 @@ namespace SimpleTasksVerifier.Tests
         public void Test_Get_Current_FileName_ShouldSucceed()
         {
             // Arrange
-            string expected = "FileTests.cs";
+            string expected = "FileExistenceTests.cs";
 
             // Act 
             string fileName = GetCurrentFileName();
