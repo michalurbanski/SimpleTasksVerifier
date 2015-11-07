@@ -14,12 +14,12 @@ namespace SimpleTasksVerifier.Tests
             string expected = "FileTests.cs";
 
             // Act 
-            string fullFilePath = new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName();
-            string fileName = Path.GetFileName(fullFilePath); 
+            string fileName = GetCurrentFileName();
 
             // Assert
-            Assert.AreEqual(expected, fileName); 
+            Assert.AreEqual(expected, fileName);
         }
+
 
         [TestMethod]
         public void Test_Check_If_File_Exists_ExistingFile()
@@ -44,6 +44,13 @@ namespace SimpleTasksVerifier.Tests
             // Assert
 
             Assert.Inconclusive(); 
+        }
+
+        private static string GetCurrentFileName()
+        {
+            string fullFilePath = new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName();
+            string fileName = Path.GetFileName(fullFilePath);
+            return fileName;
         }
     }
 }
