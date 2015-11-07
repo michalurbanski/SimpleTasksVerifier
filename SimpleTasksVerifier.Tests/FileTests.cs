@@ -1,12 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using SimpleTasksVerifier.Helpers; 
 
 namespace SimpleTasksVerifier.Tests
 {
     [TestClass]
     public class FileTests
     {
+        #region Tests
+
         [TestMethod]
         public void Test_Get_Current_FileName_ShouldSucceed()
         {
@@ -25,32 +28,83 @@ namespace SimpleTasksVerifier.Tests
         public void Test_Check_If_File_Exists_ExistingFile()
         {
             // Arrange
-            string path = ""; 
+            string fileName = GetCurrentFileName();
+            string path = GetCurrentFilePath();
 
             // Act 
+            bool isFileExists = FileHelper.CheckIfFileExists(path, fileName);
 
             // Assert
-
-            Assert.Inconclusive(); 
+            Assert.IsTrue(isFileExists);
         }
 
         [TestMethod]
-        public void Test_Check_If_File_Exists_NotExistingFile()
+        public void Test_Check_If_File_Exists_NullFileName()
         {
             // Arrange
+            string fileName = null;
+            string path = ""; // Path does not matter in case of null or empty fileName
 
             // Act 
+            bool isFileExsits = FileHelper.CheckIfFileExists(path, fileName);
 
             // Assert
-
-            Assert.Inconclusive(); 
+            Assert.IsFalse(isFileExsits);
         }
+
+        [TestMethod]
+        public void Test_Check_If_File_Exists_NullPath()
+        {
+            // Arrange
+            string fileName = "test";
+            string path = null;
+
+            // Act 
+            bool isFileExists = FileHelper.CheckIfFileExists(path, fileName);
+
+            // Assert
+            Assert.IsFalse(isFileExists);
+        }
+
+        [TestMethod]
+        public void Test_Check_If_File_Exists_WrongPath()
+        {
+            // Arrange
+            string fileName = "notexistingFile.cs";
+            string path = Path.GetRandomFileName();
+
+            // Act 
+            bool isFileExists = FileHelper.CheckIfFileExists(path, fileName);
+
+            // Assert
+            Assert.IsFalse(isFileExists);
+        } 
+
+        #endregion
+
+        #region Helper methods
 
         private static string GetCurrentFileName()
         {
-            string fullFilePath = new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName();
+            string fullFilePath = GetCurrentFileFullPath();
             string fileName = Path.GetFileName(fullFilePath);
+
             return fileName;
         }
+
+        private static string GetCurrentFilePath()
+        {
+            string fullFilePath = GetCurrentFileFullPath();
+            string path = Path.GetDirectoryName(fullFilePath);
+
+            return path;
+        }
+
+        private static string GetCurrentFileFullPath()
+        {
+            return new System.Diagnostics.StackTrace(true).GetFrame(0).GetFileName();
+        } 
+
+        #endregion
     }
 }

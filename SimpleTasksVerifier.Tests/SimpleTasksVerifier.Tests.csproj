@@ -53,6 +53,12 @@
     <Compile Include="FileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleTasksVerifier\SimpleTasksVerifier.csproj">
+      <Project>{d03da68e-fa7d-4b0c-b77f-f5c925e9ec70}</Project>
+      <Name>SimpleTasksVerifier</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
