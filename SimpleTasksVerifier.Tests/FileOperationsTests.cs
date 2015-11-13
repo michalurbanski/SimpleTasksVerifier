@@ -6,21 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using SimpleTasksVerifier.Helpers;
 
 namespace SimpleTasksVerifier.Tests
 {
     [TestClass]
     public class FileOperationsTests
     {
+        private const string NotEmptyFileName = "SampleNotEmptyFile.txt";
+        private const string EmptyFileName = "SampleEmptyFile.txt";
+
         [TestMethod]
         public void Test_Read_Data_From_File_Not_Empty_File()
         {
             // Arrange
             string result;
-            string fileName = "SampleNotEmptyFile.txt";
+            string fileName = NotEmptyFileName;
 
             // Act 
-            result = ReadFileContent(fileName);
+            result = ReadEmbeddedFileContent(fileName);
 
             // Assert
             Assert.IsTrue(result.Length > 0);
@@ -31,27 +35,27 @@ namespace SimpleTasksVerifier.Tests
         {
             // Arrange
             string result;
-            string fileName = "SampleEmptyFile.txt";
+            string fileName = EmptyFileName;
 
             // Act 
-            result = ReadFileContent(fileName);
+            result = ReadEmbeddedFileContent(fileName);
 
             // Assert
             Assert.IsTrue(result.Length == 0); 
         }
 
-        private static string ReadFileContent(string fileName)
+        private static string ReadEmbeddedFileContent(string fileName)
         {
             string result;
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = "SimpleTasksVerifier.Tests." + fileName;
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
             {
-                result = reader.ReadToEnd();
+                var lines = FileOperationsHelper.ReadFileLineByLine(stream);
+                result = string.Join("\n", lines); 
             }
-
+                
             return result;
         }
     }
