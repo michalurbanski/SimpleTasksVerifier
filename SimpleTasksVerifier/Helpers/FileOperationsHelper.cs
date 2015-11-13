@@ -12,36 +12,37 @@ namespace SimpleTasksVerifier.Helpers
     /// </summary>
     public class FileOperationsHelper
     {
-        public static IEnumerable<string> ReadFileLineByLine(string fileName)
-        {
-            string line;
-            List<string> lines = new List<string>(); 
 
-            using (StreamReader reader = new StreamReader(fileName))
-            {
-                while((line = reader.ReadLine()) != null)
-                {
-                    lines.Add(line);  
-                }
-            }
+        //public static IEnumerable<string> ReadFileLineByLine(string fileName)
+        //{
+        //    string line;
+        //    List<string> lines = new List<string>(); 
 
-            return lines; 
-        }
+        //    using (StreamReader reader = new StreamReader(fileName))
+        //    {
+        //        while((line = reader.ReadLine()) != null)
+        //        {
+        //            lines.Add(line);  
+        //        }
+        //    }
 
-        public static IEnumerable<string> ReadFileLineByLine(Stream stream)
-        {
-            string line;
-            List<string> lines = new List<string>();
+        //    return lines; 
+        //}
 
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                while ((line = reader.ReadLine()) != null)
-                {
-                    lines.Add(line);
-                }
-            }
+        //public static IEnumerable<string> ReadFileLineByLine(Stream stream)
+        //{
+        //    string line;
+        //    List<string> lines = new List<string>();
 
-            return lines;
-        }
+        //    using (StreamReader reader = new StreamReader(stream))
+        //    {
+        //        while ((line = reader.ReadLine()) != null)
+        //        {
+        //            lines.Add(line);
+        //        }
+        //    }
+
+        //    return lines;
+        //}
     }
 }

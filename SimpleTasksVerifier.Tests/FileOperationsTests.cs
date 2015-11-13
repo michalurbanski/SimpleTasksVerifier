@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
 using SimpleTasksVerifier.Helpers;
+using SimpleTasksVerifier.FileOperations;
 
 namespace SimpleTasksVerifier.Tests
 {
@@ -50,10 +51,10 @@ namespace SimpleTasksVerifier.Tests
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = "SimpleTasksVerifier.Tests." + fileName;
 
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (CustomFileReader fileReader = new CustomFileReader(assembly.GetManifestResourceStream(resourceName)))
             {
-                var lines = FileOperationsHelper.ReadFileLineByLine(stream);
-                result = string.Join("\n", lines); 
+                var lines = fileReader.ReadFile();
+                result = string.Join("\n", lines);
             }
                 
             return result;
