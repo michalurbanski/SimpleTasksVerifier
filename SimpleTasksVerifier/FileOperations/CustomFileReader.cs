@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleTasksVerifier.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace SimpleTasksVerifier.FileOperations
 {
-    public class CustomFileReader : IDisposable
+    public class CustomFileStreamReader : IDisposable, IFileReader
     {
-        private string _fileName;
-        private Stream _stream; 
+        protected string _filePath;
+        protected Stream _stream; 
 
-        public CustomFileReader(string fileName)
+        public CustomFileStreamReader(string filePath)
         {
-            _fileName = fileName; 
+            _filePath = filePath; 
         }
 
-        public CustomFileReader(Stream stream)
+        public CustomFileStreamReader(Stream stream)
         {
             _stream = stream; 
         }
@@ -38,11 +39,11 @@ namespace SimpleTasksVerifier.FileOperations
             return lines;
         }
 
-        private StreamReader CreateStreamReader()
+        protected StreamReader CreateStreamReader()
         {
-            if(!string.IsNullOrEmpty(_fileName))
+            if(!string.IsNullOrEmpty(_filePath))
             {
-                return new StreamReader(_fileName);
+                return new StreamReader(_filePath);
             }
 
             if(_stream != null)
@@ -52,7 +53,6 @@ namespace SimpleTasksVerifier.FileOperations
 
             throw new ArgumentNullException("Wrong constructor used");
         }
-
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls

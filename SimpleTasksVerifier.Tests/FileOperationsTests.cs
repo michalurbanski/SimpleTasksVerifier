@@ -51,7 +51,7 @@ namespace SimpleTasksVerifier.Tests
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = "SimpleTasksVerifier.Tests." + fileName;
 
-            using (CustomFileReader fileReader = new CustomFileReader(assembly.GetManifestResourceStream(resourceName)))
+            using (CustomFileStreamReader fileReader = new CustomFileStreamReader(assembly.GetManifestResourceStream(resourceName)))
             {
                 var lines = fileReader.ReadFile();
                 result = string.Join("\n", lines);

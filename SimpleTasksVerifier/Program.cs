@@ -28,7 +28,7 @@ namespace SimpleTasksVerifier
 
             if (FileHelper.CheckIfFileExists(folder, fileName))
             {
-                var fileReader = new CustomFileReader($"{folder}\\{fileName}");
+                var fileReader = new CustomFileStreamReader($"{folder}\\{fileName}");
                 return fileReader.ReadFile();
             }
 

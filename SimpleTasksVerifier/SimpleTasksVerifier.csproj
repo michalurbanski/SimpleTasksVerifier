@@ -46,6 +46,7 @@
     <Compile Include="Consts\Consts.cs" />
     <Compile Include="FileOperations\CustomFileReader.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Interfaces\IFileReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
