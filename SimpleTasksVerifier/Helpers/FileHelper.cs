@@ -23,13 +23,13 @@ namespace SimpleTasksVerifier.Helpers
             return File.Exists(string.Format("{0}\\{1}", path, fileName));
         }
 
-        public static string GetSampleDataFile()
+        public static string GetSampleDataFilePath()
         {
             string fileName = "SampleDataFile.txt";
             return GetApplicationDataFolder() + $"\\{fileName}";
         }
 
-        private static string GetApplicationDataFolder()
+        public static string GetApplicationDataFolder()
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SimpleTasksVerifier.FileOperations;
+using SimpleTasksVerifier.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,27 @@ namespace SimpleTasksVerifier
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Starting program...");
+
+            IEnumerable<string> fileContent = ReadFileContent();
+            Console.WriteLine("File has been read");
+            Console.WriteLine($"File has {fileContent.Count()} lines");
+
+            Console.WriteLine("Program execution finished");
+        }
+
+        static IEnumerable<string> ReadFileContent()
+        {
+            string folder = FileHelper.GetApplicationDataFolder();
+            string fileName = "SampleDataFile.txt";
+
+            if (FileHelper.CheckIfFileExists(folder, fileName))
+            {
+                var fileReader = new CustomFileReader($"{folder}\\{fileName}");
+                return fileReader.ReadFile();
+            }
+
+            throw new InvalidOperationException($"File {fileName} does not exist");
         }
     }
 }

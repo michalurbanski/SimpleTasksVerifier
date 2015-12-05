@@ -86,7 +86,7 @@ namespace SimpleTasksVerifier.Tests
             // Arrange
 
             // Act 
-            string result = FileHelper.GetSampleDataFile();
+            string result = FileHelper.GetSampleDataFilePath();
 
             // Assert
             Assert.IsTrue(result.EndsWith($"{Consts.Application.ApplicationName}\\SampleDataFile.txt")); 
