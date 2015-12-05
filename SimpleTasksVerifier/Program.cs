@@ -15,9 +15,9 @@ namespace SimpleTasksVerifier
             Console.WriteLine("Starting program...");
 
             IEnumerable<string> fileContent = ReadFileContentFromApplicationFolder();
+
             Console.WriteLine("File has been read");
             Console.WriteLine($"File has {fileContent.Count()} lines");
-
             Console.WriteLine("Program execution finished");
         }
 

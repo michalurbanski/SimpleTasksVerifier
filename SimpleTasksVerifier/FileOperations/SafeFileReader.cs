@@ -27,13 +27,21 @@ namespace SimpleTasksVerifier.FileOperations
 
         public IEnumerable<string> ReadFile()
         {
-            // Check if file exists
-            if (FileHelper.CheckIfFileExists(_reader.FilePath))
+            try
             {
-                return _reader.ReadFile(); 
-            }
+                // Check if file exists
+                if (FileHelper.CheckIfFileExists(_reader.FilePath))
+                {
+                    return _reader.ReadFile();
+                }
 
-            throw new InvalidOperationException($"File under path {FilePath} does not exist");
+                return new List<string>();
+            }
+            catch (Exception ex)
+            {
+                //TODO: log exception
+                return new List<string>(); 
+            }
         }
     }
 }
