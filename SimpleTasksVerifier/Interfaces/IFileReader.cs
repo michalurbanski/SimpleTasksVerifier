@@ -8,6 +8,7 @@ namespace SimpleTasksVerifier.Interfaces
 {
     public interface IFileReader
     {
-        IEnumerable<string> ReadFile(); 
+        IEnumerable<string> ReadFile();
+        string FilePath { get; }
     }
 }

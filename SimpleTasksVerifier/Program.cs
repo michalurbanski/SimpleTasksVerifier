@@ -26,13 +26,10 @@ namespace SimpleTasksVerifier
             string folder = FileHelper.GetApplicationDataFolder();
             string fileName = "SampleDataFile.txt";
 
-            if (FileHelper.CheckIfFileExists(folder, fileName))
-            {
-                var fileReader = new CustomFileStreamReader($"{folder}\\{fileName}");
-                return fileReader.ReadFile();
-            }
+            CustomFileStreamReader fileStreamReader = new CustomFileStreamReader(folder, fileName);
+            SafeFileReader reader = new SafeFileReader(fileStreamReader);
 
-            throw new InvalidOperationException($"File {fileName} does not exist");
+            return reader.ReadFile(); 
         }
     }
 }

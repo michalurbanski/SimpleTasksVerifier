@@ -23,6 +23,14 @@ namespace SimpleTasksVerifier.Helpers
             return File.Exists(string.Format("{0}\\{1}", path, fileName));
         }
 
+        public static bool CheckIfFileExists(string pathToFile)
+        {
+            if (string.IsNullOrEmpty(pathToFile))
+                return false;
+
+            return File.Exists(pathToFile);
+        }
+
         public static string GetSampleDataFilePath()
         {
             string fileName = "SampleDataFile.txt";

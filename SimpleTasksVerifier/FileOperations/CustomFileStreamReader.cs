@@ -11,11 +11,24 @@ namespace SimpleTasksVerifier.FileOperations
     public class CustomFileStreamReader : IDisposable, IFileReader
     {
         protected string _filePath;
-        protected Stream _stream; 
+        protected Stream _stream;
+
+        public string FilePath
+        {
+            get
+            {
+                return _filePath; 
+            }
+        }
 
         public CustomFileStreamReader(string filePath)
         {
             _filePath = filePath; 
+        }
+
+        public CustomFileStreamReader(string folder, string fileName)
+        {
+            _filePath = $"{folder}\\{fileName}";
         }
 
         public CustomFileStreamReader(Stream stream)
