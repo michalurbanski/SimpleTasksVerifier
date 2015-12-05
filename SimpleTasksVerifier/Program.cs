@@ -14,14 +14,14 @@ namespace SimpleTasksVerifier
         {
             Console.WriteLine("Starting program...");
 
-            IEnumerable<string> fileContent = ReadFileContent();
+            IEnumerable<string> fileContent = ReadFileContentFromApplicationFolder();
             Console.WriteLine("File has been read");
             Console.WriteLine($"File has {fileContent.Count()} lines");
 
             Console.WriteLine("Program execution finished");
         }
 
-        static IEnumerable<string> ReadFileContent()
+        static IEnumerable<string> ReadFileContentFromApplicationFolder()
         {
             string folder = FileHelper.GetApplicationDataFolder();
             string fileName = "SampleDataFile.txt";
