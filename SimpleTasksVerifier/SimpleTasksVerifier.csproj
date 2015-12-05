@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consts\Consts.cs" />
     <Compile Include="FileOperations\CustomFileReader.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Program.cs" />

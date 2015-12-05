@@ -80,6 +80,18 @@ namespace SimpleTasksVerifier.Tests
             Assert.IsFalse(isFileExists);
         } 
 
+        [TestMethod]
+        public void Test_GetUserApplicationDataFolder_ShouldSucceed()
+        {
+            // Arrange
+
+            // Act 
+            string result = FileHelper.GetApplicationDataFolder();
+
+            // Assert
+            Assert.IsTrue(result.EndsWith($"{Consts.Application.ApplicationName}\\SampleDataFile.txt")); 
+        }
+
         #endregion
 
         #region Helper methods
