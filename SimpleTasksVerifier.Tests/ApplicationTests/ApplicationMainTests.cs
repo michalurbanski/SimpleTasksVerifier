@@ -16,7 +16,7 @@ namespace SimpleTasksVerifier.Tests.ApplicationTests
         public void Test_ValidFile_ShouldReturnAnyResults()
         {
             string filePath = @"c:\samplefile.txt";
-            CustomFileStreamReader reader = new CustomFileStreamReader(filePath);
+            var reader = new CustomFileStreamReader(filePath);
             ApplicationLogic application = new ApplicationLogic(filePath, reader, new FileProcessor());
 
             application.ReadFile();
@@ -33,7 +33,7 @@ namespace SimpleTasksVerifier.Tests.ApplicationTests
         {
             string filePath = string.Empty;
 
-            CustomFileStreamReader reader = new CustomFileStreamReader(filePath);
+            var reader = new CustomFileStreamReader(filePath);
             ApplicationLogic application = new ApplicationLogic(filePath, reader, new FileProcessor());
 
             application.ReadFile();
@@ -44,7 +44,7 @@ namespace SimpleTasksVerifier.Tests.ApplicationTests
         public void Test_NotExistingFile_ShouldThrowException()
         {
             string filePath = @"c:\notexistingdummyfile.zz";
-            CustomFileStreamReader reader = new CustomFileStreamReader(filePath);
+            var reader = new CustomFileStreamReader(filePath);
             ApplicationLogic application = new ApplicationLogic(filePath, reader, new FileProcessor());
 
             application.ReadFile();
