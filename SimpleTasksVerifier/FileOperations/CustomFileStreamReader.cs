@@ -64,7 +64,7 @@ namespace SimpleTasksVerifier.FileOperations
                 return new StreamReader(_stream);
             }
 
-            throw new ArgumentNullException("Wrong constructor used");
+            throw new InvalidOperationException("Can't create stream for specified file path");
         }
 
         #region IDisposable Support

@@ -10,6 +10,7 @@ namespace SimpleTasksVerifier.Logic
         private readonly IFileReader _fileReader;
         private IEnumerable<string> _fileLines;
         private IFileProcessor _fileProcessor;
+        private IEnumerable<TaskResult> _results;
 
         public ApplicationLogic(string filePath, IFileReader fileReader, IFileProcessor fileProcessor)
         {
@@ -25,12 +26,12 @@ namespace SimpleTasksVerifier.Logic
 
         public void ProcessFile()
         {
-            _fileProcessor.ProcessFile(); 
+            _results = _fileProcessor.ProcessFile(); 
         }
 
         public IEnumerable<TaskResult> GetResults()
         {
-            return new List<TaskResult> { new TaskResult() };
+            return _results; 
         }
     }
 }

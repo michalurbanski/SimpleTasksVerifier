@@ -1,7 +1,10 @@
-﻿namespace SimpleTasksVerifier.Interfaces
+﻿using SimpleTasksVerifier.Models;
+using System.Collections.Generic;
+
+namespace SimpleTasksVerifier.Interfaces
 {
     public interface IFileProcessor
     {
-        void ProcessFile();
+        IEnumerable<TaskResult> ProcessFile();
     }
 }

@@ -4,6 +4,7 @@ using SimpleTasksVerifier.Logic;
 using SimpleTasksVerifier.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace SimpleTasksVerifier.Tests.ApplicationTests
@@ -16,8 +17,7 @@ namespace SimpleTasksVerifier.Tests.ApplicationTests
         {
             string filePath = @"c:\samplefile.txt";
             CustomFileStreamReader reader = new CustomFileStreamReader(filePath);
-            SafeFileReader safeReader = new SafeFileReader(reader); 
-            ApplicationLogic application = new ApplicationLogic(filePath, safeReader, new FileProcessor());
+            ApplicationLogic application = new ApplicationLogic(filePath, reader, new FileProcessor());
 
             application.ReadFile();
             application.ProcessFile();
@@ -28,26 +28,24 @@ namespace SimpleTasksVerifier.Tests.ApplicationTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void Test_ReadingEmptyFilePath_ShouldThrowException()
         {
             string filePath = string.Empty;
 
             CustomFileStreamReader reader = new CustomFileStreamReader(filePath);
-            SafeFileReader safeReader = new SafeFileReader(reader);
-            ApplicationLogic application = new ApplicationLogic(filePath, safeReader, new FileProcessor());
+            ApplicationLogic application = new ApplicationLogic(filePath, reader, new FileProcessor());
 
             application.ReadFile();
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
+        [ExpectedException(typeof(FileNotFoundException))]
         public void Test_NotExistingFile_ShouldThrowException()
         {
             string filePath = @"c:\notexistingdummyfile.zz";
             CustomFileStreamReader reader = new CustomFileStreamReader(filePath);
-            SafeFileReader safeReader = new SafeFileReader(reader);
-            ApplicationLogic application = new ApplicationLogic(filePath, safeReader, new FileProcessor());
+            ApplicationLogic application = new ApplicationLogic(filePath, reader, new FileProcessor());
 
             application.ReadFile();
         }
