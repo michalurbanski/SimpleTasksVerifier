@@ -9,7 +9,7 @@ namespace SimpleTasksVerifier.Logic
     {
         public IEnumerable<TaskResult> ProcessFile()
         {
-            throw new NotImplementedException();
+            return new List<TaskResult> { new TaskResult()}; 
         }
     }
 }
