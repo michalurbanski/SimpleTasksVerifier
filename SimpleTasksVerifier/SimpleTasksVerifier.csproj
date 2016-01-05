@@ -48,6 +48,8 @@
     <Compile Include="FileOperations\SafeFileReader.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Interfaces\IFileReader.cs" />
+    <Compile Include="Logic\ApplicationLogic.cs" />
+    <Compile Include="Models\TaskResult.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
